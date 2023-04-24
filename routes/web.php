@@ -38,5 +38,8 @@ Route::middleware([
     Route::middleware(['role:user'])->group(function () {
         Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])
             ->name('dashboard');
+        Route::get('/news', function () {
+            return view('news');
+        })->name('news');
     });
 });
