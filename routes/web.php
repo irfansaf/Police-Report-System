@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,20 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    // Route::get('/dashboard', function () {
+    //     return view('dashboard');
+    // })->name('dashboard');
+
+    Route::middleware(['role:admin'])->group(function () {
+        Route::get('/admin/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])
+            ->name('admin.dashboard');
+    });
+    Route::middleware(['role:police'])->group(function () {
+        Route::get('/police/dashboard', [App\Http\Controllers\Police\DashboardController::class, 'index'])
+            ->name('police.dashboard');
+    });
+    Route::middleware(['role:user'])->group(function () {
+        Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])
+            ->name('dashboard');
+    });
 });
