@@ -42,11 +42,6 @@ class ReportController extends Controller
             'description' => 'required',
         ]);
 
-        // if ($validator->fails()) {
-        //     Log::error("'Validation Failed: ' . json_encode($validator->errors())");
-        //     return redirect()->back()->withErrors($validator->errors())->withInput;
-        // }
-
         $imageName = time() . '.' . $request->image->extension();
         $request->image->move(public_path('images'), $imageName);
 
@@ -55,6 +50,7 @@ class ReportController extends Controller
             'image' => $imageName,
             'category_id' => $request->category_id,
             'description' => $request->description,
+            'status' => 'pending',
         ]);
 
         Log::info("Report submitted successfully by user: " . auth()->user()->id);
@@ -92,5 +88,30 @@ class ReportController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function userReports() {
+        $user_id = auth()->user()->id;
+        $reports = Report::where('user_id', $user_id)->get();
+        
+        return view('reports', compact('reports'));
+    }
+
+    public function adminReports() {
+        $reports = Report::whereIn('status', ['pending', 'rejected'])->get();
+
+        return view ('admin.reports', compact('reports'));
+    }
+
+    public function approveReport(Report $report) {
+        $report->update(['status' => 'approved']);
+
+        return redirect()->route('admin.reports')->with('success', 'Report approved successfully');
+    }
+
+    public function rejectReport(Report $report) {
+        $report->update(['status' => 'rejected']);
+
+        return redirect()->route('admin.reports')->with('success', 'Report rejected successfully');
     }
 }
