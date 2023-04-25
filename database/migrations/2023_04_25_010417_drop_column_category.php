@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            // $table->unsignedBigInteger('role_id')->nullable()->after('id');
-            // $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
+        Schema::table('reports', function (Blueprint $table) {
+            $table->dropColumn('category');
         });
     }
 
@@ -22,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
+        Schema::table('reports', function (Blueprint $table) {
+            $table->string('category')->after('category_id');
         });
     }
 };
