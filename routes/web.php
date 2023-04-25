@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers;
+use App\Models\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,8 +39,12 @@ Route::middleware([
     Route::middleware(['role:user'])->group(function () {
         Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])
             ->name('dashboard');
-        Route::get('/news', function () {
-            return view('news');
-        })->name('news');
+
+        Route::get('/newreports', function () {
+            $categories = App\Models\Category::all();
+            return view('newreports', ['categories' => $categories]);
+        })->name('newreports');
+
+        Route::resource('reports', App\Http\Controllers\ReportController::class);
     });
 });

@@ -1,0 +1,41 @@
+@font-face {
+    font-family: 'Metro Police';
+    font-weight: 400;
+    font-style: normal;
+    src: url(/fonts/METRO_POLICE_REGULAR.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Metro Police';
+    font-weight: 400;
+    font-style: italic;
+    src: url(/fonts/METRO_POLICE_REGULAR_ITALIC.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Metro Police';
+    font-weight: 300;
+    font-style: normal;
+    src: url(/fonts/METRO_POLICE_LIGHT.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Metro Police';
+    font-weight: 300;
+    font-style: italic;
+    src: url(/fonts/METRO_POLICE_LIGHT_ITALIC.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Metro Police';
+    font-weight: 700;
+    font-style: normal;
+    src: url(/fonts/METRO_POLICE_BOLD.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Metro Police';
+    font-weight: 700;
+    font-style: italic;
+    src: url(/fonts/METRO_POLICE_BOLD_ITALIC.otf) format('opentype');
+}

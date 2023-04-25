@@ -12,8 +12,13 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['Metro Police', 'sans-serif'],
             },
+            fontWeight: {
+                'light': 300,
+                'regular': 400,
+                'bold': 700,
+            }
         },
     },
 
