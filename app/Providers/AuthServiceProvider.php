@@ -21,11 +21,6 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->registerPolicies();
-
-        // Define a gate for viewing reports
-        Gate::define('view-reports', function($user) {
-            return in_array($user->role->name, ['admin', 'police']);
-        });
+        //
     }
 }
