@@ -9,7 +9,11 @@ class Image extends Model
 {
     use HasFactory;
 
-    public function report() {
+    protected $fillable = ['image_path'];
+    protected $table = 'report_images';
+
+    public function report()
+    {
         return $this->belongsTo(Report::class);
     }
 }

@@ -4,20 +4,32 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
+use App\Models\Police;
 
 class Report extends Model
 {
     use HasFactory;
 
-    public function user() {
+    protected $fillable = [
+        'title',
+        'description',
+        'location',
+        'status',
+    ];
+
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function assigned_police() {
-        return $this->belongsTo(User::class, 'assigned_police_id');
+    public function police()
+    {
+        return $this->belongsTo(Police::class);
     }
 
-    public function images() {
-        return $this->hasMany(Image::class);
+    public function images()
+    {
+        return $this->hasMany(Image::class, 'report_id');
     }
 }

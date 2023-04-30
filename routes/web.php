@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Police\PoliceController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,31 +22,38 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Route::get('/dashboard', function () {
+//    return view('dashboard');
+//})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/register', [UserController::class, 'showRegistrationForm'])->name('register');
-Route::post('/register', [UserController::class, 'register']);
-Route::get('/login', [UserController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [UserController::class, 'login']);
-Route::post('/logout', [UserController::class, 'logout'])->name('logout');
-Route::get('/about', function () {
-    return view('screen.About');
-})->name('about');
-
-Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-
-    Route::middleware(['checkRole:user'])->group(function () {
-        Route::get('/reports/create', [ReportController::class, 'create'])->name('reports.create');
-        Route::post('/reports', [ReportController::class, 'store'])->name('reports.store');
-    });
-
-    Route::middleware(['checkRole:admin'])->group(function () {
-        // Define routes for admin actions here
-    });
-
-    Route::middleware(['checkRole:police'])->group(function () {
-        // Define routes for police actions here
-    });
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    // Routes accessible only by admins
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::post('/admin/reports/{report}/approve', [AdminController::class, 'approveReport'])->name('admin.approve');
+    Route::post('/admin/reports/{report}/reject', [AdminController::class, 'rejectReport'])->name('admin.reject');
+});
+
+Route::middleware(['auth', 'role:police'])->group(function () {
+    // Routes accessible only by police officers
+    Route::get('/police/dashboard', [PoliceController::class, 'dashboard'])->name('police.dashboard');
+    Route::post('/police/reports/{report}/accept', [PoliceController::class, 'acceptReport'])->name('police.accept');
+    Route::post('/police/reports/{report}/reject', [PoliceController::class, 'rejectReport'])->name('police.reject');
+    Route::post('/police/reports/{report}/archive', [PoliceController::class, 'archiveReport'])->name('police.archive');
+});
+
+Route::middleware(['auth', 'role:user'])->group(function () {
+    // Routes accessible only by users
+    Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
+
+    Route::get('/report/create', [ReportController::class, 'index'])->name('create-report-form');
+    Route::post('/report/create', [ReportController::class, 'createReport'])->name('create-report');
+});
+
+
+require __DIR__.'/auth.php';

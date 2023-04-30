@@ -3,32 +3,43 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
-use App\Models\Model;
+use App\Models\Report;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ReportController extends Controller
 {
-    public function create() {
+    public function index() {
         return view('reports.create');
     }
-
-    public function store(Request $request) {
+    public function createReport(Request $request)
+    {
         $request->validate([
-            'title' =>'required',
+            'title' => 'required|max:255',
             'description' => 'required',
             'location' => 'required',
+            'images.*' => 'mimes:jpeg,png,jpg|max:2048',
         ]);
 
+        $user = Auth::user();
+
         $report = new Report([
-            'user_id' => auth()->user()->id,
             'title' => $request->title,
             'description' => $request->description,
             'location' => $request->location,
             'status' => 'pending',
         ]);
 
-        $report->save();
+        $user->reports()->save($report);
 
-        return redirect()->route('reports.index');
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $imageName = time() . '-' . $image->getClientOriginalName();
+                $image->move(public_path('images/reports'), $imageName);
+                $report->images()->create(['image_path' => 'images/reports/' . $imageName]);
+            }
+        }
+
+        return redirect()->route('dashboard')->with('success', 'Report submitted successfully');
     }
 }
