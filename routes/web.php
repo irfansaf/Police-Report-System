@@ -3,7 +3,6 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Police\PoliceController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,7 +19,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
 
 //Route::get('/dashboard', function () {
 //    return view('dashboard');
@@ -42,6 +44,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 Route::middleware(['auth', 'role:police'])->group(function () {
     // Routes accessible only by police officers
     Route::get('/police/dashboard', [PoliceController::class, 'dashboard'])->name('police.dashboard');
+
+    Route::post('/reports/{report}/update-status', [App\Http\Controllers\Police\ReportController::class, 'updateStatus']);
     Route::post('/police/reports/{report}/accept', [PoliceController::class, 'acceptReport'])->name('police.accept');
     Route::post('/police/reports/{report}/reject', [PoliceController::class, 'rejectReport'])->name('police.reject');
     Route::post('/police/reports/{report}/archive', [PoliceController::class, 'archiveReport'])->name('police.archive');
@@ -51,8 +55,9 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     // Routes accessible only by users
     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
 
-    Route::get('/report/create', [ReportController::class, 'index'])->name('create-report-form');
-    Route::post('/report/create', [ReportController::class, 'createReport'])->name('create-report');
+    Route::get('/report', [App\Http\Controllers\ReportController::class, 'index'])->name('report.view');
+    Route::get('/report/create', [App\Http\Controllers\ReportController::class, 'create'])->name('create-report-form');
+    Route::post('/report/create', [App\Http\Controllers\ReportController::class, 'createReport'])->name('create-report');
 });
 
 
