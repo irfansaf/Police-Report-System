@@ -4,8 +4,8 @@
             @foreach($reports as $report)
             <div class="w-4/5 h-32" onclick="selectReport(event, {{ $report->id }})" data-title="{{ $report->title }}" data-time="{{ $report->created_at }}" data-location="{{ $report->location }}" data-description="{{ $report->description }}" data-image="{{ asset($report->images[0]->image_path) }}">
                 <div class="w-full h-44 border-2 border-white rounded-3xl flex">
-                    <div class="w-3/6 h-44 ">
-                        <img src="{{ asset($report->images->first()->image_path) }}" alt="s" class="w-full h-44 object-cover">
+                    <div class="w-full h-44 ">
+                        <img src="{{ asset($report->images->first()->image_path) }}" alt="s" class="w-full h-44 object-cover rounded-3xl">
                     </div>
                     <div class="w-4/6 h-44 pl-4">
                         <div class="w-full flex border-b-2 border-white py-1">
@@ -40,7 +40,7 @@
                     <span id="report-title" class="text-xl">Title</span>
                 </div>
                 <div class="w-4/5 h-44 border-2 border-white rounded-3xl flex justify-center items-center">
-                    <img id="report-image" src="" alt="report-image" class="w-full">
+                    <img id="report-image" src="" alt="report-image" class="w-full h-full object-cover rounded-3xl">
                 </div>
                 <div class="text-2xl font-semibold text-left w-full">Time :
                     <span id="report-time" class="text-xl">Time</span>

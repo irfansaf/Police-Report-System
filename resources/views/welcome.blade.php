@@ -1,5 +1,4 @@
-@extends('layouts.app')
-@section('container')
+<x-app-layout>
     <div class="w-full min-h-screen flex flex-col items-center text-white">
         <div class="w-5/6 flex justify-between items-center gap-20">
             <div class="w-full h-3/5  flex  justify-center items-center gap-10 flex-col">
@@ -62,4 +61,5 @@
             </div>
         </div>
     </div>
-@endsection
+
+</x-app-layout>
