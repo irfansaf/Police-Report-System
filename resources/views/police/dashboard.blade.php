@@ -1,6 +1,9 @@
-<x-app-layout>
+<x-police-layout>
     <div class="w-full h-screen flex justify-between items-center mt-5">
         <div class="w-full h-screen flex items-center flex-col gap-28 overflow-y-auto">
+            @if(session('success'))
+                <x-alert-success :message="session('success')" class="mb-4" />
+            @endif
             @foreach($reports as $report)
             <div class="w-4/5 h-32" onclick="selectReport(event, {{ $report->id }})" data-title="{{ $report->title }}" data-time="{{ $report->created_at }}" data-location="{{ $report->location }}" data-description="{{ $report->description }}" data-image="{{ asset($report->images[0]->image_path) }}">
                 <div class="w-full h-44 border-2 border-white rounded-3xl flex">
@@ -27,9 +30,9 @@
                     </div>
                 </div>
                 <div class="options absolute top-44 left-96 ml-44 w-20 h-28 bg-white text-blue-800 flex flex-col justify-center items-center rounded-2xl gap-2 hidden">
-                    <div class="cursor-pointer"> ACCEPT </div>
-                    <div class="cursor-pointer"> REJECT </div>
-                    <div class="cursor-pointer"> CLOSE </div>
+                    <div class="cursor-pointer" data-action="accept" onclick="updateReportStatus(event, {{ $report->id }})"> ACCEPT </div>
+                    <div class="cursor-pointer" data-action="reject" onclick="updateReportStatus(event, {{ $report->id }})"> REJECT </div>
+                    <div class="cursor-pointer" data-action="close" onclick="updateReportStatus(event, {{ $report->id }})"> CLOSE </div>
                 </div>
             </div>
             @endforeach
@@ -77,6 +80,27 @@
                 document.getElementById('report-description').innerText = `${description}`;
                 document.getElementById('report-image').src = imageURI;
             }
+
+            function updateReportStatus(event, reportId) {
+                const action = event.target.getAttribute('data-action');
+                axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+                axios.post('/reports/' + reportId + '/update-status', {
+                    action: action
+                })
+                    .then(function (response) {
+                        if (response.data.success) {
+                            // Reload the page to update the list of reports
+                            location.reload();
+                        } else {
+                            // Show an error message if something went wrong
+                            alert(response.data.message);
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+            }
         </script>
     @endpush
-</x-app-layout>
+</x-police-layout>

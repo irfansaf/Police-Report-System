@@ -23,21 +23,19 @@
         <div class="w-full min-h-screen bg-blue-600 text-white">
             @include('layouts.navigation')
 
-{{--            <!-- Page Heading -->--}}
-{{--            @if (isset($header))--}}
-{{--                <header class="bg-white shadow">--}}
-{{--                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">--}}
-{{--                        {{ $header }}--}}
-{{--                    </div>--}}
-{{--                </header>--}}
-{{--            @endif--}}
 
-            <!-- Page Content -->
             <main>
                 {{$slot}}
             </main>
         </div>
         <!-- Script-->
         @stack('scripts')
+        <script src="js/modal.js" defer></script>
+        <script src="js/caseToggle.js" defer></script>
+        <script src="js/authToggle.js" defer></script>
+        <script src="js/uploadToggle.js" defer></script>
+        <script src="js/sliderInfinite.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+        <script src="js/slider.js"></script>
     </body>
 </html>

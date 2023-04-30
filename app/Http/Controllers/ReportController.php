@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Storage;
 class ReportController extends Controller
 {
     public function index() {
+        return view('reports.view');
+    }
+    public function create() {
         return view('reports.create');
     }
     public function createReport(Request $request)

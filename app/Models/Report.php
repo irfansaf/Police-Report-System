@@ -32,4 +32,5 @@ class Report extends Model
     {
         return $this->hasMany(Image::class, 'report_id');
     }
+
 }
