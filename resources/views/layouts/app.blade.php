@@ -37,5 +37,6 @@
         <script src="js/sliderInfinite.js" defer></script>
         <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
         <script src="js/slider.js"></script>
+        <script src="js/utils.js"></script>
     </body>
 </html>
