@@ -7,8 +7,8 @@
         @endif
 
 
-        <div class="mt-4">
-            <ul class="flex border-b">
+        <div class="mt-4 flex flex-col gap-8">
+            <ul class="flex">
                 <li class="-mb-px mr-1">
                     <a class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold" href="#pending">Pending</a>
                 </li>

@@ -9,9 +9,8 @@
                         environment.
                     </div>
                     <div class="font-normal text-lg  text-left">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis, nobis. Ab pariatur saepe
-                        sunt
-                        voluptas
+                        Make your environment comfortable
+                        and peaceful by reporting easily and simply through our website
                     </div>
                 </div>
                 <div class="w-full flex justify-center items-center gap-5">
@@ -22,7 +21,8 @@
                             <i class="ml-2 fa fa-arrow-right"></i>
                         </button>
                     </a>
-                    <button class="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-5 rounded-full text-base">
+                    <button
+                        class="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-5 rounded-full text-base">
                         Learn More
                     </button>
                 </div>
@@ -43,8 +43,6 @@
             <div class="w-full flex flex-col items-center gap-8">
                 <div class="font-semibold text-3xl"> OUR SERVICE</div>
                 <div class="w-3/5 h-32 flex justify-center items-center gap-8">
-                    @include('partials.landing.service')
-                    @include('partials.landing.service')
                     @include('partials.landing.service')
                 </div>
             </div>
