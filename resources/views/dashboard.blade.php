@@ -57,12 +57,12 @@
                                 <div class="w-full flex flex-col border-b-2 border-white py-1 gap-2">
                                     <div>
                                         <div class="font-base text-base">{{ $report->title }}</div>
-                                        <div class="w-full font-base text-md text-right text-gray-900">({{ $report->user->email }})
+                                        <div class="w-full font-base text-md text-right text-white">({{ $report->user->email }})
                                         </div>
                                     </div>
                                     <div class="pr-2">
                                         <div class="font-normal text-base">{{ $report->location }}</div>
-                                        <div class="font-normal text-base">{{ $report->created_at }}</div>
+                                        <span class="font-normal text-base created-at">{{ ($report->created_at) }}</span>
                                     </div>
                                 </div>
                                 <div class="w-full">
@@ -84,4 +84,29 @@
         </div>
 
     </div>
+
+    @push('scripts')
+        <script>
+            const createdAt = document.querySelector('.created-at').textContent;
+            const formattedDate = formatDate(createdAt);
+            document.querySelector('.created-at').textContent = formattedDate;
+
+            function formatDate(dateString) {
+                const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+                const date = new Date(dateString);
+                const day = date.getDate();
+                const month = months[date.getMonth()];
+                const year = date.getFullYear();
+                let hours = date.getHours();
+                let minutes = date.getMinutes();
+
+                // Pad single-digit hours and minutes with a leading zero
+                hours = hours.toString().padStart(2, '0');
+                minutes = minutes.toString().padStart(2, '0');
+
+                return `${day} ${month} ${year} at ${hours}:${minutes}`;
+            }
+        </script>
+    @endpush
 </x-app-layout>
