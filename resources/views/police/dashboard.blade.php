@@ -1,6 +1,7 @@
 <x-police-layout>
-    <div class="w-full h-screen flex justify-between items-center mt-5">
-        <div class="w-full h-screen flex items-center flex-col gap-28 overflow-y-auto">
+    <div class="w-full h-screen flex justify-between items-center mt-10">
+        <div class="w-full h-screen flex items-center flex-col gap-14 overflow-y-auto">
+
             @if (session('success'))
                 <x-alert-success :message="session('success')" class="mb-4" />
             @endif
@@ -9,29 +10,29 @@
                     data-title="{{ $report->title }}" data-time="{{ $report->created_at }}"
                     data-location="{{ $report->location }}" data-description="{{ $report->description }}"
                     data-image="{{ asset($report->images[0]->image_path) }}">
-                    <div class="w-full h-44 border-2 border-white rounded-3xl flex">
-                        <div class="px-2 w-full h-44 flex justify-center items-center pt-3">
-                            <div class="w-2/6 h-36 ">
-                                <img src="{{ asset($report->images->first()->image_path) }}" alt="s"
+                    <div class="w-full h-44 border-2 border-white rounded-3xl flex justify-between">
+                        <div class="w-full h-44 flex justify-center items-center gap-2">
+                            <div class="w-2/6 h-36 pl-2">
+                                <img src="{{ asset($report->images->first()->image_path) }}" alt="image"
                                     class="w-full h-full rounded-3xl">
                             </div>
-                            <div class="w-4/6 h-44 pl-4">
-                                <div class="w-full flex border-b-2 border-white py-1">
+                            <div class="w-4/6 h-44 flex flex-col justify-center items-center">
+                                <div class="w-full flex flex-col border-b-2 border-white ">
                                     <div>
-                                        <div class="font-medium text-xl">{{ $report->title }}</div>
-                                        <div class="font-medium text-xl">({{ $report->user->email }})</div>
+                                        <div class="font-medium text-lg">{{ $report->title }}</div>
+                                        <div class="font-medium text-normal">{{ $report->user->name }}</div>
                                     </div>
                                     <div class="w-full text-right pr-2">
-                                        <div class="font-normal text-lg">{{ $report->location }}</div>
-                                        <span class="font-normal text-lg created-at">{{ ($report->created_at) }}</span>
+                                        <span class="font-normal text-lg created-at">{{ $report->created_at }}</span>
                                     </div>
                                 </div>
                                 <div class="w-full">
-                                    <div class="font-normal text-base"> Description : {{ $report->description }}</div>
+                                    <div class="font-normal text-normal">{{ $report->location }}</div>
                                 </div>
                             </div>
-                            <div class="w-16 flex justify-center items-center bg-white rounded-r-3xl">
-                                <div class="text-black font-bold cursor-pointer" onclick="toggleOptions()">V</div>
+                            <div class="w-8 flex h-full justify-center rounded-r-3xl">
+                                <div class="w-8 h-8 text-black font-bold cursor-pointer bg-white rounded-full flex justify-center items-center"
+                                    onclick="toggleOptions()">V</div>
                             </div>
                         </div>
                     </div>
@@ -119,7 +120,9 @@
             }
 
             function formatDate(dateString) {
-                const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+                const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
+                    'October', 'November', 'December'
+                ];
 
                 const date = new Date(dateString);
                 const day = date.getDate();
