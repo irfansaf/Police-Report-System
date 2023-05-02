@@ -10,9 +10,8 @@
                 to ensure that reports are handled efficiently and effectively.
                 Our goal is to create safer communities for all.
             </div>
-            <div class="w-full h-32 flex justify-center items-center gap-8">
-                @include('partials.landing.service')
-                @include('partials.landing.service')
+            <div class="w-full h-32 flex flex-col justify-center items-center gap-8 mt-8 mb-8">
+                <div class="font-semibold text-3xl  py-4">OUR SERVICE</div>
                 @include('partials.landing.service')
             </div>
         </div>
