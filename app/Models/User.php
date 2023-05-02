@@ -55,4 +55,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Report::class);
     }
+
+    public function getRedirectRoute() {
+        return match((int)$this->role_id) {
+            1 => 'admin/dashboard',
+            2 => 'police/dashboard',
+            3 => 'dashboard',
+        };
+    }
 }
