@@ -23,7 +23,7 @@
                                     </div>
                                     <div class="w-full text-right pr-2">
                                         <div class="font-normal text-lg">{{ $report->location }}</div>
-                                        <div class="font-normal text-lg">{{ $report->created_at }}</div>
+                                        <span class="font-normal text-lg created-at">{{ ($report->created_at) }}</span>
                                     </div>
                                 </div>
                                 <div class="w-full">
@@ -31,7 +31,7 @@
                                 </div>
                             </div>
                             <div class="w-16 flex justify-center items-center bg-white rounded-r-3xl">
-                                <div class="text-black font-bold cursor-pointer" onclick="toggleOptions(event)">V</div>
+                                <div class="text-black font-bold cursor-pointer" onclick="toggleOptions()">V</div>
                             </div>
                         </div>
                     </div>
@@ -70,10 +70,12 @@
     </div>
     @push('scripts')
         <script>
-            function toggleOptions(event) {
-                const targetElement = event.target;
-                const optionsElement = targetElement.parentElement.parentElement.nextElementSibling;
+            const createdAt = document.querySelector('.created-at').textContent;
+            const formattedDate = formatDate(createdAt);
+            document.querySelector('.created-at').textContent = formattedDate;
 
+            function toggleOptions() {
+                const optionsElement = document.querySelector('.options');
                 optionsElement.classList.toggle('hidden');
             }
 
@@ -81,9 +83,11 @@
                 const targetElement = event.currentTarget;
                 const title = targetElement.dataset.title;
                 const location = targetElement.dataset.location;
-                const time = targetElement.dataset.time;
+                const timeString = targetElement.dataset.time;
                 const description = targetElement.dataset.description;
                 const imageURI = targetElement.dataset.image;
+
+                const time = formatDate(timeString);
 
                 document.getElementById('report-title').innerText = `${title}`;
                 document.getElementById('report-location').innerText = `${location}`;
@@ -112,6 +116,23 @@
                     .catch(function(error) {
                         console.log(error);
                     })
+            }
+
+            function formatDate(dateString) {
+                const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+                const date = new Date(dateString);
+                const day = date.getDate();
+                const month = months[date.getMonth()];
+                const year = date.getFullYear();
+                let hours = date.getHours();
+                let minutes = date.getMinutes();
+
+                // Pad single-digit hours and minutes with a leading zero
+                hours = hours.toString().padStart(2, '0');
+                minutes = minutes.toString().padStart(2, '0');
+
+                return `${day} ${month} ${year} at ${hours}:${minutes}`;
             }
         </script>
     @endpush
