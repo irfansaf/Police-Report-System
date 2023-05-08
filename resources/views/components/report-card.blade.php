@@ -16,19 +16,25 @@
             </div>
             <div class="text-right">
                 <div class="font-normal text-lg">{{ $report->location }}</div>
-                <div class="font-normal text-lg">{{ $report->created_at->format('Y-m-d H:i') }}</div>
+                <span class="font-normal text-lg created-at">{{ $report->created_at }}</span>
             </div>
         </div>
         <div class="font-normal text-base mt-2">Description: {{ $report->description }}</div>
         <div class="flex justify-end mt-4">
-            <form action="{{ route('admin.approve', $report->id) }}" method="post">
-                @csrf
-                <button type="submit" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Approve</button>
-            </form>
-            <form action="{{ route('admin.reject', $report->id) }}" method="post" class="ml-2">
-                @csrf
-                <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">Reject</button>
-            </form>
+            @if($report->status === 'pending')
+                <form action="{{ route('admin.approve', $report->id) }}" method="post">
+                    @csrf
+                    <button type="submit" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Approve</button>
+                </form>
+                <form action="{{ route('admin.reject', $report->id) }}" method="post" class="ml-2">
+                    @csrf
+                    <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">Reject</button>
+                </form>
+            @elseif($report->status === 'approved')
+                <span class="text-green-500 font-bold">{{ $report->status }}</span>
+            @elseif($report->status === 'rejected')
+                <span class="text-red-500 font-bold">{{ $report->status }}</span>
+            @endif
         </div>
     </div>
 </div>
