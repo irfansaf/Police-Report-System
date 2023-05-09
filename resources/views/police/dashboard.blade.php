@@ -5,48 +5,87 @@
             @if (session('success'))
                 <x-alert-success :message="session('success')" class="mb-4" />
             @endif
-            @foreach ($reports as $report)
-                <div class="w-4/5 h-32" onclick="selectReport(event, {{ $report->id }})"
-                    data-title="{{ $report->title }}" data-time="{{ $report->created_at }}"
-                    data-location="{{ $report->location }}" data-description="{{ $report->description }}"
-                    data-image="{{ asset($report->images[0]->image_path) }}">
-                    <div class="w-full h-44 border-2 border-white rounded-3xl flex justify-between">
-                        <div class="w-full h-44 flex justify-center items-center gap-2">
-                            <div class="w-2/6 h-36 pl-2">
-                                <img src="{{ asset($report->images->first()->image_path) }}" alt="image"
-                                    class="w-full h-full rounded-3xl">
-                            </div>
-                            <div class="w-4/6 h-44 flex flex-col justify-center items-center">
-                                <div class="w-full flex flex-col border-b-2 border-white ">
-                                    <div>
-                                        <div class="font-medium text-lg">{{ $report->title }}</div>
-                                        <div class="font-medium text-normal">{{ $report->user->name }}</div>
+
+            @if($ongoingReport)
+                <div class="w-4/5 h-32 mb-5">
+                    <h2 class="text-xl font-semibold mb-2">Ongoing Report</h2>
+                    <div id="ongoing-report" class="w-full h-44 border-2 border-white rounded-3xl">
+                        @if(isset($ongoingReport))
+                            <div class="w-full h-44 flex justify-center items-center gap-2">
+                                <div class="w-2/6 h-36 pl-2">
+                                    <img src="{{ asset($ongoingReport->images->first()->image_path) }}" alt="image"
+                                         class="w-full h-full rounded-3xl">
+                                </div>
+                                <div class="w-4/6 h-44 flex flex-col justify-center items-center">
+                                    <div class="w-full flex flex-col border-b-2 border-white ">
+                                        <div>
+                                            <div class="font-medium text-lg">{{ $ongoingReport->title }}</div>
+                                            <div class="font-medium text-normal">{{ $ongoingReport->user->name }}</div>
+                                        </div>
+                                        <div class="w-full text-right pr-2">
+                                            <span class="font-normal text-lg created-at">{{ $ongoingReport->created_at }}</span>
+                                        </div>
                                     </div>
-                                    <div class="w-full text-right pr-2">
-                                        <span class="font-normal text-lg created-at">{{ $report->created_at }}</span>
+                                    <div class="w-full">
+                                        <div class="font-normal text-normal">{{ $ongoingReport->location }}</div>
+                                    </div>
+                                    <div class="relative w-full my-2">
+                                        <input type="range" min="0" max="100" value="0" class="slider appearance-none w-full h-2 bg-gray-400 outline-none opacity-70 hover:opacity-100 focus:opacity-100" id="closeSlider" onchange="checkSliderValue(event, {{ $ongoingReport->id }})">
+                                        <label for="closeSlider" class="slider-label absolute left-1/2 transform -translate-x-1/2 bottom-[-20px] text-xs">Slide to close report</label>
                                     </div>
                                 </div>
-                                <div class="w-full">
-                                    <div class="font-normal text-normal">{{ $report->location }}</div>
-                                </div>
                             </div>
-                            <div class="w-8 flex h-full justify-center rounded-r-3xl">
-                                <div class="w-8 h-8 text-black font-bold cursor-pointer bg-white rounded-full flex justify-center items-center"
-                                    onclick="toggleOptions()">V</div>
+                        @else
+                            <div class="w-full h-44 flex justify-center items-center">
+                                <span>No ongoing report</span>
                             </div>
-                        </div>
-                    </div>
-                    <div
-                        class="options absolute top-44 left-96 ml-44 w-20 h-28 bg-white text-blue-800 flex flex-col justify-center items-center rounded-2xl gap-2 hidden">
-                        <div class="cursor-pointer" data-action="accept"
-                            onclick="updateReportStatus(event, {{ $report->id }})"> ACCEPT </div>
-                        <div class="cursor-pointer" data-action="reject"
-                            onclick="updateReportStatus(event, {{ $report->id }})"> REJECT </div>
-                        <div class="cursor-pointer" data-action="close"
-                            onclick="updateReportStatus(event, {{ $report->id }})"> CLOSE </div>
+                        @endif
+                        <!-- The ongoing report content will be inserted here -->
                     </div>
                 </div>
-            @endforeach
+                @else
+                @foreach ($reports as $report)
+                    <div class="w-4/5 h-32" onclick="selectReport(event, {{ $report->id }})"
+                        data-title="{{ $report->title }}" data-time="{{ $report->created_at }}"
+                        data-location="{{ $report->location }}" data-description="{{ $report->description }}"
+                        data-image="{{ asset($report->images[0]->image_path) }}">
+                        <div class="w-full h-44 border-2 border-white rounded-3xl flex justify-between">
+                            <div class="w-full h-44 flex justify-center items-center gap-2">
+                                <div class="w-2/6 h-36 pl-2">
+                                    <img src="{{ asset($report->images->first()->image_path) }}" alt="image"
+                                        class="w-full h-full rounded-3xl">
+                                </div>
+                                <div class="w-4/6 h-44 flex flex-col justify-center items-center">
+                                    <div class="w-full flex flex-col border-b-2 border-white ">
+                                        <div>
+                                            <div class="font-medium text-lg">{{ $report->title }}</div>
+                                            <div class="font-medium text-normal">{{ $report->user->name }}</div>
+                                        </div>
+                                        <div class="w-full text-right pr-2">
+                                            <span class="font-normal text-lg created-at">{{ $report->created_at }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="w-full">
+                                        <div class="font-normal text-normal">{{ $report->location }}</div>
+                                    </div>
+                                </div>
+                                <div class="w-8 flex h-full justify-center rounded-r-3xl">
+                                    <div class="w-8 h-8 text-black font-bold cursor-pointer bg-white rounded-full flex justify-center items-center"
+                                        onclick="toggleOptions()">V</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="options absolute top-44 left-96 ml-44 w-20 h-28 bg-white text-blue-800 flex flex-col justify-center items-center rounded-2xl gap-2 hidden">
+                            <div class="cursor-pointer" data-action="accept"
+                                onclick="updateReportStatus(event, {{ $report->id }})"> ACCEPT </div>
+                            <div class="cursor-pointer" data-action="reject"
+                                onclick="updateReportStatus(event, {{ $report->id }})"> REJECT </div>
+                            <div class="cursor-pointer" data-action="close"
+                                onclick="updateReportStatus(event, {{ $report->id }})"> CLOSE </div>
+                        </div>
+                    </div>
+                @endforeach
         </div>
         <div class="w-full h-screen items-center flex-col">
             <div class="w-full min-h-screen flex items-center flex-col gap-5 px-10">
@@ -68,6 +107,7 @@
                 </div>
             </div>
         </div>
+        @endif
     </div>
     @push('scripts')
         <script>
@@ -97,8 +137,13 @@
                 document.getElementById('report-image').src = imageURI;
             }
 
-            function updateReportStatus(event, reportId) {
-                const action = event.target.getAttribute('data-action');
+            function updateReportStatus(event, reportId, action = null) {
+                event.stopPropagation();
+
+                if (action === null) {
+                    action = event.target.getAttribute('data-action');
+                }
+
                 axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute(
                     'content');
 
@@ -117,6 +162,11 @@
                     .catch(function(error) {
                         console.log(error);
                     })
+
+                if (event.target.dataset.action === 'accept' || event.target.dataset.action === 'reject') {
+                    const reportElement = event.target.closest('.w-14/5.h-32');
+                    reportElement.remove();
+                }
             }
 
             function formatDate(dateString) {
@@ -137,6 +187,16 @@
 
                 return `${day} ${month} ${year} at ${hours}:${minutes}`;
             }
+
+            function checkSliderValue(event, reportId) {
+                var sliderValue = event.target.value;
+                if (sliderValue == 100) {
+                    updateReportStatus(event, reportId, 'close'); // Added the 'close' action parameter
+                    event.target.value = 0; // Reset the slider value
+                }
+            }
+
+
         </script>
     @endpush
 </x-police-layout>
