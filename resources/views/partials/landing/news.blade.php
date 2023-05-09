@@ -2,7 +2,7 @@
     <a href="#" class="group relative block w-full h-full ">
         <div class="relative p-4 sm:p-6 lg:p-8">
             <p class="text-sm font-medium uppercase tracking-widest text-pink-500">
-                Developer
+                Kompas.com
             </p>
             <p class="text-xl font-bold text-white sm:text-2xl">Tony Wayne</p>
             <div class="mt-5">
