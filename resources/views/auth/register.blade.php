@@ -16,7 +16,7 @@
                     <x-input-error :messages="$errors->get('name')" class="mt-2" />
 
                 <!-- Email Address -->
-                    <x-text-input placeholder="E-mail" id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+                    <x-text-input placeholder="E-mail" id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', request()->query('email'))" required autocomplete="email" />
                     <x-input-error :messages="$errors->get('email')" class="mt-2" />
 
                 <!-- Password -->
