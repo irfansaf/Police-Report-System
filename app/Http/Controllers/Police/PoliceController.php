@@ -5,13 +5,15 @@ namespace App\Http\Controllers\Police;
 use App\Http\Controllers\Controller;
 use App\Models\Report;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class PoliceController extends Controller
 {
     public function dashboard()
     {
+        $ongoingReport = Report::where('police_id', auth()->id())->where('status', 'investigation')->first();
         $reports = Report::with('user')->where('status', 'approved')->get();
-        return view('police.dashboard', compact('reports'));
+        return view('police.dashboard', compact('reports', 'ongoingReport'));
     }
 
     public function acceptReport(Report $report)

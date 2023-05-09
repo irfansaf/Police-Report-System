@@ -25,7 +25,7 @@ class Report extends Model
 
     public function police()
     {
-        return $this->belongsTo(Police::class);
+        return $this->belongsTo(User::class, 'police_id');
     }
 
     public function images()

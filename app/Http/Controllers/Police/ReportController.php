@@ -33,6 +33,7 @@ class ReportController extends Controller
                 break;
             case 'close':
                 $report->status = 'closed';
+                $report->police_id = null; // Add this line
                 break;
             default:
                 return response()->json(['success' => false, 'message' => 'Invalid action']);
