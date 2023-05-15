@@ -44,7 +44,20 @@
             </div>
         </div>
         <div class="w-full lg:w-4/5 px-4 mx-auto">
-            <div class="text-2xl font-semibold py-5">CASES</div>
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-semibold py-5">CASES</div>
+                <form method="GET" action="{{ route('dashboard') }}" class="flex items-center">
+                    <label for="status" class="mr-2 text-white">Status:</label>
+                    <select name="status" id="status" class="rounded p-1 bg-white text-gray-700">
+                        <option value="">All</option>
+                        <option value="approved">Approved</option>
+                        <option value="investigation">Investigation</option>
+                        <option value="rejected">Rejected</option>
+                        <option value="closed">Closed</option>
+                    </select>
+                    <button type="submit" class="ml-2 bg-blue-500 text-white rounded p-1 hover:bg-blue-700">Filter</button>
+                </form>
+            </div>
             <div class="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
                 @foreach ($reports as $report)
                     <a href="{{ route('report.show', $report->id) }}">
@@ -70,6 +83,17 @@
                                 </div>
                                 <div class="w-full">
                                     <div class="font-normal text-base"> Description : {{ $report->description }} </div>
+                                </div>
+                                <div class="flex justify-end mt-4">
+                                    @if($report->status === 'approved')
+                                        <span class="text-green-500 font-bold">{{ $report->status }}</span>
+                                    @elseif($report->status === 'investigation')
+                                        <span class="text-yellow-500 font-bold">{{ $report->status }}</span>
+                                    @elseif($report->status === 'rejected')
+                                        <span class="text-red-500 font-bold">{{ $report->status }}</span>
+                                    @elseif($report->status === 'closed')
+                                        <span class="text-blue-600-500 font-bold">{{ $report->status }}</span>
+                                    @endif
                                 </div>
                             </div>
                         </div>
