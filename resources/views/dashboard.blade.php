@@ -20,7 +20,7 @@
             </div>
             <div class="w-full h-64 rounded-3xl bg-white bg-opacity-10">
                 <div class="font-bold text-3xl border-b-2 border-white w-full text-center py-2"> My Report</div>
-                <div class="w-full h-56 overflow-auto">
+                <div class="w-full h-56 overflow-y-scroll">
                     @foreach ($userReports as $userReport)
                         <div aria-label="group of cards" tabindex="0" class="focus:outline-none w-full">
                             <div class="lg:flex items-center justify-center w-full">
@@ -82,7 +82,7 @@
                                     </div>
                                 </div>
                                 <div class="w-full">
-                                    <div class="font-normal text-base"> Description : {{ $report->description }} </div>
+                                    <div class="font-normal text-base"> Description : {{ Illuminate\Support\Str::limit($report->description, 100, '...') }} </div>
                                 </div>
                                 <div class="flex justify-end mt-4">
                                     @if($report->status === 'approved')
