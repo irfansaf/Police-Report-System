@@ -2,7 +2,7 @@
     <div class="w-full min-h-screen flex items-center flex-col mt-5 px-4">
         <div class="w-full lg:w-4/5 flex flex-col lg:flex-row justify-between items-center gap-5 lg:gap-14">
             <div
-                class="w-full rounded-3xl flex justify-center items-center flex-col gap-5 bg-white bg-opacity-20 py-8 mb-5 lg:mb-0">
+                class="w-full rounded-3xl flex justify-center items-center flex-col gap-5 bg-white bg-opacity-10 py-8 mb-5 lg:mb-0">
                 <div>
                     <div class="pl-5 py-2 font-semibold text-4xl">Report your complaints
                         <span class="text-semibold text-red-600">efficiently</span>
@@ -74,12 +74,9 @@
                 @endforeach
             </div>
         </div>
-        <div class="w-full lg:w-4/5 min-h-screen mt-8 mx-auto flex flex-col gap-8">
+        <div class="w-full lg:w-4/5 mt-8 mx-auto flex flex-col gap-8">
             <div class="w-full h-64 lg:h-96">
                 @include('partials.dashboard.slider')
-            </div>
-            <div class="w-full h-64 lg:h-96">
-                @include('layouts.footer')
             </div>
         </div>
 
