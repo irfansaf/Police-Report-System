@@ -1,6 +1,6 @@
 <x-police-layout>
     <div class="w-full h-screen flex justify-between items-center my-12">
-        <div class="w-full h-screen flex items-center flex-col gap-14 overflow-y-auto">
+        <div class="scrollbar-thin scrollbar-thumb-amber-400 w-full h-screen flex items-center flex-col gap-14 overflow-y-auto">
 
             @if (session('success'))
                 <x-alert-success :message="session('success')" class="mb-4" />
