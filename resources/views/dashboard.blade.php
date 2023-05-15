@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="w-full min-h-screen flex items-center flex-col mt-5 px-4">
-        <div class="w-full lg:w-4/5 flex flex-col lg:flex-row justify-between items-center gap-5 lg:gap-14">
+        <div class="w-full h-full lg:w-4/5 flex flex-col lg:flex-row justify-between items-center gap-5 lg:gap-14">
             <div
                 class="w-full rounded-3xl flex justify-center items-center flex-col gap-5 bg-white bg-opacity-10 py-8 mb-5 lg:mb-0">
                 <div>
@@ -84,6 +84,6 @@
                 @include('partials.dashboard.slider')
             </div>
         </div>
-
+        @include('layouts.footer')
     </div>
 </x-app-layout>
