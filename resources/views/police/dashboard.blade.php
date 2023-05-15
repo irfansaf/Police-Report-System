@@ -1,5 +1,5 @@
 <x-police-layout>
-    <div class="w-full h-screen flex justify-between items-center mt-10">
+    <div class="w-full h-screen flex justify-between items-center my-12">
         <div class="w-full h-screen flex items-center flex-col gap-14 overflow-y-auto">
 
             @if (session('success'))
@@ -23,7 +23,7 @@
                                             <div class="font-medium text-normal">{{ $ongoingReport->user->name }}</div>
                                         </div>
                                         <div class="w-full text-right pr-2">
-                                            <span class="font-normal text-lg created-at">{{ $ongoingReport->created_at }}</span>
+                                            <span class="font-normal text-lg created-at">{{ $ongoingReport->created_at->format('d F Y \a\t h:i A') }}</span>
                                         </div>
                                     </div>
                                     <div class="w-full">
@@ -62,7 +62,7 @@
                                             <div class="font-medium text-normal">{{ $report->user->name }}</div>
                                         </div>
                                         <div class="w-full text-right pr-2">
-                                            <span class="font-normal text-lg created-at">{{ $report->created_at }}</span>
+                                            <span class="font-normal text-lg created-at">{{ $report->created_at->format('d F Y \a\t h:i A') }}</span>
                                         </div>
                                     </div>
                                     <div class="w-full">

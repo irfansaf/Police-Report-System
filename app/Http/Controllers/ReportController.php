@@ -12,6 +12,11 @@ class ReportController extends Controller
     public function index() {
         return view('reports.view');
     }
+
+    public function show(Report $report) {
+        return view('reports.detail', compact('report'));
+    }
+
     public function create() {
         return view('reports.create');
     }
