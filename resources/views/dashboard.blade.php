@@ -72,7 +72,7 @@
                             <div class="w-full md:w-4/6 h-auto pl-4">
                                 <div class="w-full flex flex-col border-b-2 border-white py-1 gap-2">
                                     <div>
-                                        <div class="font-base text-base">{{ $report->title }}</div>
+                                        <div class="font-semibold text-base">{{ $report->title }}</div>
                                         <div class="w-full font-base text-md text-right text-white">({{ $report->user->email }})
                                         </div>
                                     </div>
