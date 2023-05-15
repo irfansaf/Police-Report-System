@@ -111,10 +111,6 @@
     </div>
     @push('scripts')
         <script>
-            const createdAt = document.querySelector('.created-at').textContent;
-            const formattedDate = formatDate(createdAt);
-            document.querySelector('.created-at').textContent = formattedDate;
-
             function toggleOptions() {
                 const optionsElement = document.querySelector('.options');
                 optionsElement.classList.toggle('hidden');
@@ -128,13 +124,31 @@
                 const description = targetElement.dataset.description;
                 const imageURI = targetElement.dataset.image;
 
-                const time = formatDate(timeString);
+                const time = formatTimeString(timeString);
 
                 document.getElementById('report-title').innerText = `${title}`;
                 document.getElementById('report-location').innerText = `${location}`;
                 document.getElementById('report-time').innerText = `${time}`;
                 document.getElementById('report-description').innerText = `${description}`;
                 document.getElementById('report-image').src = imageURI;
+            }
+
+            function formatTimeString(timeString) {
+                const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+                const date = new Date(timeString);
+                const day = date.getDate();
+                const month = months[date.getMonth()];
+                const year = date.getFullYear();
+                let hours = date.getHours();
+                let minutes = date.getMinutes();
+                const ampm = hours >= 12 ? 'PM' : 'AM';
+
+                // Convert from 24 hour to 12-hour format and prepend 0 to single-digit hours
+                hours = hours % 12;
+                hours = hours ? hours : 12;
+                minutes = minutes < 10 ? '0' + minutes : minutes;
+
+                return `${day} ${month} ${year} at ${hours}:${minutes} ${ampm}`
             }
 
             function updateReportStatus(event, reportId, action = null) {
@@ -167,25 +181,6 @@
                     const reportElement = event.target.closest('.w-14/5.h-32');
                     reportElement.remove();
                 }
-            }
-
-            function formatDate(dateString) {
-                const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
-                    'October', 'November', 'December'
-                ];
-
-                const date = new Date(dateString);
-                const day = date.getDate();
-                const month = months[date.getMonth()];
-                const year = date.getFullYear();
-                let hours = date.getHours();
-                let minutes = date.getMinutes();
-
-                // Pad single-digit hours and minutes with a leading zero
-                hours = hours.toString().padStart(2, '0');
-                minutes = minutes.toString().padStart(2, '0');
-
-                return `${day} ${month} ${year} at ${hours}:${minutes}`;
             }
 
             function checkSliderValue(event, reportId) {

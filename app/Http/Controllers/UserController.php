@@ -8,11 +8,20 @@ use App\Models\Report;
 
 class UserController extends Controller
 {
-    public function dashboard()
+    public function dashboard(Request $request)
     {
         $user = Auth::user();
-        $userReports = $user->reports;
-        $reports = Report::paginate(10);
+        $userReports = $user->reports()->orderBy('created_at', 'desc')->get();
+
+        $status = $request->get('status');
+
+        $reportsQuery = Report::where('status', '!=', 'pending')->orderby('created_at', 'desc');
+
+        if ($request->has('status') && in_array($request->status, ['approved', 'investigation', 'rejected', 'closed'])) {
+            $reportsQuery = $reportsQuery->where('status', $request->status);
+        }
+
+        $reports = $reportsQuery->paginate(10);
 
         return view('dashboard', compact('reports', 'userReports'));
     }
