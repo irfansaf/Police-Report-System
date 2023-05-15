@@ -72,7 +72,7 @@
     }
 
     .containerss {
-        background: linear-gradient(136.88deg, #a4a3a3 0.19%, rgba(255, 255, 255, 0.14) 80.52%), linear-gradient(0deg, rgba(217, 217, 217, 0.15), rgba(217, 217, 217, 0.15));
+        background: linear-gradient(136.88deg, #224c9a 0.19%, rgba(255, 255, 255, 0.14) 80.52%), linear-gradient(0deg, rgba(217, 217, 217, 0.15), rgba(217, 217, 217, 0.15));
 
     }
 </style>
@@ -82,8 +82,9 @@
         @include('layouts.navigation')
         <main>
             {{ $slot }}
+            {{-- @include('layouts.footer') --}}
         </main>
-        @include('layouts.footer')
+
     </div>
     <!-- Script-->
     @stack('scripts')
