@@ -56,9 +56,9 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
 
     Route::get('/report', [App\Http\Controllers\ReportController::class, 'index'])->name('report.view');
-    Route::get('/report/{report}', [\App\Http\Controllers\ReportController::class, 'show'])->name('report.show');
     Route::get('/report/create', [App\Http\Controllers\ReportController::class, 'create'])->name('create-report-form');
     Route::post('/report/create', [App\Http\Controllers\ReportController::class, 'createReport'])->name('create-report');
+    Route::get('/report/{report}', [\App\Http\Controllers\ReportController::class, 'show'])->name('report.show');
 });
 
 
