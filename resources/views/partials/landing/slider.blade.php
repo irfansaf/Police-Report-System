@@ -2,7 +2,7 @@
     <div class="swiper-container w-96 px-12 py-5">
         <div class="swiper-wrapper  h-full">
             <div class="swiper-slide bg-cover bg-center w-full h-full">
-                <div class="rounded-lg bg-black w-full h-60 shadow-2xl shadow-black bg-[url('https://t-2.tstatic.net/pantura/foto/bank/images/Suasana-di-jalanan-area-Gor-Tri-Sanja-Slawi-Kabupaten-Tegal-pada-malam-hari.jpg')]">
+                <div class="rounded-lg bg-black w-full h-60 shadow-2xl shadow-black bg-[url('https://t-2.tstatic.net/pantura/foto/bank/images/Suasana-di-jalanan-area-Gor-Tri-Sanja-Slawi-Kabupaten-Tegal-pada-malam-hari.jpg')]" style="background-size: cover; background-position: center center;">
                     <a href="https://megapolitan.kompas.com/read/2023/03/28/09334241/ketika-jalanan-di-tangsel-semakin-rawan-kriminal-ada-remaja-dikeroyok-dan?page=all" target="_blank" class="group relative block w-full h-full ">
                         <div class="relative p-4 sm:p-6 lg:p-8">
                             <p class="text-sm font-medium uppercase tracking-widest text-pink-500">
@@ -23,7 +23,7 @@
 
             </div>
             <div class="swiper-slide bg-cover bg-center w-full h-full">
-                <div class="rounded-lg bg-black w-full h-60 shadow-2xl shadow-black bg-[url('https://akcdn.detik.net.id/community/media/visual/2023/04/02/kadiv-hjumas-polri-irjen-sandi-nugroho_169.jpeg?w=700&q=90')]">
+                <div class="rounded-lg bg-black w-full h-60 shadow-2xl shadow-black bg-[url('https://akcdn.detik.net.id/community/media/visual/2023/04/02/kadiv-hjumas-polri-irjen-sandi-nugroho_169.jpeg?w=700&q=90')]" style="background-size: cover; background-position: center center;">
                     <a href="https://news.detik.com/berita/d-6710518/polri-kerahkan-tim-ke-filipina-besok-untuk-usut-kasus-scam-internasional" target="_blank" class="group relative block w-full h-full ">
                         <div class="relative p-4 sm:p-6 lg:p-8">
                             <p class="text-sm font-medium uppercase tracking-widest text-pink-500">
@@ -43,7 +43,7 @@
                 </div>
             </div>
             <div class="swiper-slide bg-cover bg-center w-full h-full">
-                <div class="rounded-lg bg-black w-full h-60 shadow-2xl shadow-black bg-[url('https://thumb.viva.co.id/media/frontend/thumbs3/2023/02/08/63e378c0220c2-kapolrestabes-semarang-kombes-pol-irwan-anwar_1265_711.jpg')]">
+                <div class="rounded-lg bg-black w-full h-60 shadow-2xl shadow-black bg-[url('https://thumb.viva.co.id/media/frontend/thumbs3/2023/02/08/63e378c0220c2-kapolrestabes-semarang-kombes-pol-irwan-anwar_1265_711.jpg')]"style="background-size: cover; background-position: center center;">
                     <a href="https://news.detik.com/berita/d-6710518/polri-kerahkan-tim-ke-filipina-besok-untuk-usut-kasus-scam-internasional" target="_blank" class="group relative block w-full h-full ">
                         <div class="relative p-4 sm:p-6 lg:p-8">
                             <p class="text-sm font-medium uppercase tracking-widest text-pink-500">
@@ -63,7 +63,7 @@
                 </div>
             </div>
             <div class="swiper-slide bg-cover bg-center w-full h-full">
-                <div class="rounded-lg bg-black w-full h-60 shadow-2xl shadow-black bg-[url('https://blue.kumparan.com/image/upload/fl_progressive,fl_lossy,c_fill,q_auto:best,w_640/v1634025439/01gznms2zhqn7yffkkgd456akq.jpg')]">
+                <div class="rounded-lg bg-black w-full h-60 shadow-2xl shadow-black bg-[url('https://blue.kumparan.com/image/upload/fl_progressive,fl_lossy,c_fill,q_auto:best,w_640/v1634025439/01gznms2zhqn7yffkkgd456akq.jpg')]"style="background-size: cover; background-position: center center;">
                     <a href="https://kumparan.com/kumparannews/polda-metro-tangkap-3-pemasok-senjata-ke-mustopa-pelaku-penembakan-kantor-mui-20LT2KRnV70" target="_blank" class="group relative block w-full h-full ">
                         <div class="relative p-4 sm:p-6 lg:p-8">
                             <p class="text-sm font-medium uppercase tracking-widest text-pink-500">
@@ -83,7 +83,7 @@
                 </div>
             </div>
             <div class="swiper-slide bg-cover bg-center w-full h-full">
-                <div class="rounded-lg bg-black w-full h-60 shadow-2xl shadow-black bg-[url('https://akcdn.detik.net.id/visual/2023/01/09/ilustrasi-kekerasan-terhadap-anak-5_169.jpeg?w=650&q=90')]">
+                <div class="rounded-lg bg-black w-full h-60 shadow-2xl shadow-black bg-[url('https://akcdn.detik.net.id/visual/2023/01/09/ilustrasi-kekerasan-terhadap-anak-5_169.jpeg?w=650&q=90')]"style="background-size: cover; background-position: center center;">
                     <a href="https://www.cnnindonesia.com/nasional/20230509065553-12-946980/penculikan-keysa-di-bandung-terekam-cctv-pelaku-diduga-mantan-pacar" target="_blank" class="group relative block w-full h-full ">
                         <div class="relative p-4 sm:p-6 lg:p-8">
                             <p class="text-sm font-medium uppercase tracking-widest text-pink-500">
@@ -103,7 +103,7 @@
                 </div>
             </div>
             <div class="swiper-slide bg-cover bg-center w-full h-full">
-                <div class="rounded-lg bg-black w-full h-60 shadow-2xl shadow-black bg-[url('https://thumb.tvonenews.com/thumbnail/2023/05/06/6455f3e9854cd-satreskrim-polres-labuhanbatu-gelar-konferensi-pers_1265_711.jpg')]">
+                <div class="rounded-lg bg-black w-full h-60 shadow-2xl shadow-black bg-[url('https://thumb.tvonenews.com/thumbnail/2023/05/06/6455f3e9854cd-satreskrim-polres-labuhanbatu-gelar-konferensi-pers_1265_711.jpg')]"style="background-size: cover; background-position: center center;">
                     <a href="https://www.tvonenews.com/daerah/sumatera/120127-pulang-dari-bermain-remaja-di-labuhanbatu-dirudapaksa-dua-pria" target="_blank" class="group relative block w-full h-full ">
                         <div class="relative p-4 sm:p-6 lg:p-8">
                             <p class="text-sm font-medium uppercase tracking-widest text-pink-500">

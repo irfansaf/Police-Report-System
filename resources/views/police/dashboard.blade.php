@@ -1,5 +1,5 @@
 <x-police-layout>
-    <div class="w-full h-screen flex justify-between items-center mt-10">
+    <div class="w-full h-screen flex justify-between items-center my-12">
         <div class="w-full h-screen flex items-center flex-col gap-14 overflow-y-auto">
 
             @if (session('success'))

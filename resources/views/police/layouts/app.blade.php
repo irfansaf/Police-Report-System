@@ -19,8 +19,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 
 </head>
+<style>
+    .containers {
+       background: linear-gradient(180deg, #004790 0%, #2178DD 125.31%);
+       font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+   }
+</style>
 <body class="font-sans antialiased">
-<div class="w-full min-h-screen bg-blue-600 text-white">
+<div class="w-full min-h-screen containers text-white">
     @include('police.layouts.navigation')
 
     {{--            <!-- Page Heading -->--}}
@@ -36,6 +42,7 @@
     <main>
         {{$slot}}
     </main>
+    @include('police.layouts.footer')
 </div>
 <!-- Script-->
 @stack('scripts')

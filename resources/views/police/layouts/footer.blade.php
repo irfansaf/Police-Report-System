@@ -1,4 +1,4 @@
-<div class="w-fullc  flex flex-col justify-center items-center py-8 gap-4 text-white">
+<div class="w-full flex flex-col justify-center items-center py-8 gap-4 text-white">
     <div class="shrink-0 flex items-center">
         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
     </div>
