@@ -23,7 +23,7 @@
                                             <div class="font-medium text-normal">{{ $ongoingReport->user->name }}</div>
                                         </div>
                                         <div class="w-full text-right pr-2">
-                                            <span class="font-normal text-lg created-at">{{ $ongoingReport->created_at }}</span>
+                                            <span class="font-normal text-lg created-at">{{ $ongoingReport->created_at->format('d F Y \a\t h:i A') }}</span>
                                         </div>
                                     </div>
                                     <div class="w-full">
@@ -62,7 +62,7 @@
                                             <div class="font-medium text-normal">{{ $report->user->name }}</div>
                                         </div>
                                         <div class="w-full text-right pr-2">
-                                            <span class="font-normal text-lg created-at">{{ $report->created_at }}</span>
+                                            <span class="font-normal text-lg created-at">{{ $report->created_at->format('d F Y \a\t h:i A') }}</span>
                                         </div>
                                     </div>
                                     <div class="w-full">

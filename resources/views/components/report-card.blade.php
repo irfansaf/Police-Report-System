@@ -16,7 +16,7 @@
             </div>
             <div class="text-right">
                 <div class="font-normal text-lg">{{ $report->location }}</div>
-                <span class="font-normal text-lg created-at">{{ $report->created_at }}</span>
+                <span class="font-normal text-lg created-at">{{ $report->created_at->format('d F Y \a\t h:i A') }}</span>
             </div>
         </div>
         <div class="font-normal text-base mt-2">Description: {{ $report->description }}</div>
