@@ -1,4 +1,4 @@
-<form action="{{ route('register') }}" method="GET" class="flex items-center justify-center items-center">
+<form action="{{ route('register') }}" method="GET" class="flex items-center justify-center items-center borde border-gray-900">
     <label for="email" class="sr-only">Email</label>
     <div class="relative w-4/5">
         <input type="text" id="email" name="email"
