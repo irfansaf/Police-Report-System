@@ -20,7 +20,7 @@
             </div>
             <div class="w-full h-64 rounded-3xl bg-white bg-opacity-10">
                 <div class="font-bold text-3xl border-b-2 border-white w-full text-center py-2"> My Report</div>
-                <div class="scrollbar-thin scrollbar-thumb-amber-400 w-full h-56 overflow-auto hover:scrollbar-thumb-amber-700">
+                <div class="scrollbar-thin scrollbar-thumb-amber-400 w-full h-40 overflow-auto hover:scrollbar-thumb-amber-700">
                     @foreach ($userReports as $userReport)
                         <div aria-label="group of cards" tabindex="0" class="focus:outline-none w-full">
                             <div class="lg:flex items-center justify-center w-full">
